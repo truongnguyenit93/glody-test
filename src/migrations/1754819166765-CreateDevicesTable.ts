@@ -51,6 +51,9 @@ export class CreateDevicesTable1754818100000 implements MigrationInterface {
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         const table = await queryRunner.getTable("devices");
+        if (!table) {
+            throw new Error("Table 'devices' not found");
+          }
         const foreignKey = table.foreignKeys.find(fk => fk.columnNames.indexOf("organization_id") !== -1);
         if (foreignKey) {
             await queryRunner.dropForeignKey("devices", foreignKey);

@@ -11,6 +11,7 @@ export class LocationsService {
   ) {}
 
   async findById(id: number): Promise<Location | undefined> {
-    return this.locationsRepo.findOneById(id);
+    const location = await this.locationsRepo.findOneById(id);
+    return location ?? undefined;
   }
 }

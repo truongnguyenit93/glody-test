@@ -63,8 +63,15 @@ export class CreateAssetsTable1791670000000 implements MigrationInterface {
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     const table = await queryRunner.getTable('assets');
+    if (!table) {
+      throw new Error("Table 'assets' not found");
+    }
+
     const foreignKey = table.foreignKeys.find(fk => fk.columnNames.indexOf('location_id') !== -1);
-    await queryRunner.dropForeignKey('assets', foreignKey);
+    if (foreignKey) {
+      await queryRunner.dropForeignKey('assets', foreignKey);
+    }
+    
     await queryRunner.dropTable('assets');
   }
 }
