@@ -6,9 +6,6 @@ export class Asset {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'br_id' })
-  brId: string;
-
   @Column()
   type: string;
 

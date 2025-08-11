@@ -36,9 +36,11 @@ export class AssetsService {
                 const exists = await this.assetsRepo.findByLocationId(location.id);
                 if (!exists && new Date(asset.created_at) <= new Date()) {
                     await this.assetsRepo.save({
-                        name: asset.name,
+                        serial: asset.serial,
                         type: asset.type,
-                        location: location,
+                        location_id: asset.location_id,
+                        status: asset.status,
+                        description: asset.description,
                         createdAt: asset.createdAt
                     });
                     this.logger.log(`Asset ${asset.serial} created successfully.`);

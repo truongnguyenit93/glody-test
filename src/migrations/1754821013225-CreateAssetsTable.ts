@@ -14,11 +14,6 @@ export class CreateAssetsTable1791670000000 implements MigrationInterface {
             generationStrategy: 'increment',
           },
           {
-            name: 'br_id',
-            type: 'varchar',
-            isNullable: false,
-          },
-          {
             name: 'type',
             type: 'varchar',
           },
